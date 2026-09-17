@@ -28,12 +28,27 @@ public class controller implements ActionListener {
                 return;
             }
             model.berechneRunde(eingabe);
-            JLabel rundenErgebnis = panel.getRundenErgebnis();
-            if (model.hatGewonnen()) rundenErgebnis.setText("Gewonnen");
-            else if (model.hatVerloren()) rundenErgebnis.setText("Verloren");
-            else rundenErgebnis.setText(Integer.toString(model.getRundenErgebnis()));
             panel.getEingabe().setEditable(false);
             panel.getNochMalBtn().setEnabled(true);
+            JLabel rundenErgebnis = panel.getRundenErgebnis();
+            if (model.hatGewonnen()) {
+                rundenErgebnis.setText("Gewonnen");
+                rundenErgebnis.setBackground(Color.GREEN);
+            }
+            else if (model.hatVerloren()) {
+                rundenErgebnis.setText("Verloren");
+                rundenErgebnis.setBackground(Color.RED);
+            }
+            else {
+                rundenErgebnis.setText(Integer.toString(model.getRundenErgebnis()));
+                if (model.getRundenErgebnis() > 0) {
+                    rundenErgebnis.setBackground(Color.GREEN);
+                    panel.getGesamtPunkte().setBackground(Color.GREEN);
+                } else if (model.getRundenErgebnis() < 0) {
+                    rundenErgebnis.setBackground(Color.RED);
+                    panel.getGesamtPunkte().setBackground(Color.RED);
+                }
+            }
             panel.getComputerPunkte().setText(Integer.toString(model.getComputerZahl()));
             panel.getGesamtPunkte().setText(Integer.toString(model.getGesamtPunkte()));
         } else if (e.getSource() == panel.getNochMalBtn()) {
@@ -42,6 +57,8 @@ public class controller implements ActionListener {
             panel.getComputerPunkte().setText("");
             panel.getRundenErgebnis().setText("");
             panel.getEingabe().setText("");
+            panel.getRundenErgebnis().setBackground(Color.WHITE);
+            panel.getGesamtPunkte().setBackground(Color.WHITE);
         }
     }
 

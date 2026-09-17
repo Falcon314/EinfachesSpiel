@@ -15,7 +15,16 @@ public class GewinnModel {
         computerZahl = new Random().nextInt(1,10);
     }
     public void berechneRunde(int spielerZahl) {
-
+        this.spielerZahl = spielerZahl;
+        berechneComputerZahl();
+        if (this.spielerZahl == this.computerZahl) {
+            this.rundenErgebnis = 20;
+        } else if (this.spielerZahl == this.computerZahl + 1 || this.spielerZahl == this.computerZahl - 1) {
+            this.rundenErgebnis = 5;
+        } else {
+            this.rundenErgebnis = -10;
+        }
+        this.gesamtPunkte += this.rundenErgebnis;
     }
     public boolean hatGewonnen() {
         return gesamtPunkte >= 100;

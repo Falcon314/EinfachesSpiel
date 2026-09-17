@@ -27,6 +27,8 @@ public class controller implements ActionListener {
             } catch (NumberFormatException ex) {
                 return;
             }
+            panel.getEingabe().setEditable(false);
+            panel.getNochMalBtn().setEnabled(true);
             model.berechneRunde(eingabe);
             JLabel rundenErgebnis = panel.getRundenErgebnis();
             if (model.hatGewonnen()) rundenErgebnis.setText("Gewonnen");
@@ -35,6 +37,8 @@ public class controller implements ActionListener {
             panel.getComputerPunkte().setText(Integer.toString(model.getComputerZahl()));
             panel.getGesamtPunkte().setText(Integer.toString(model.getGesamtPunkte()));
         } else if (e.getSource() == panel.getNochMalBtn()) {
+            panel.getEingabe().setEditable(true);
+            panel.getNochMalBtn().setEnabled(false);
             panel.getComputerPunkte().setText("");
             panel.getRundenErgebnis().setText("");
             panel.getEingabe().setText("");

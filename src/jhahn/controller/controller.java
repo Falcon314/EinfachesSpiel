@@ -23,42 +23,41 @@ public class controller implements ActionListener {
         if (e.getSource() == panel.getEingabe()) {
             int eingabe;
             try {
-                eingabe = Integer.parseInt(panel.getEingabe().getText().trim());
+                eingabe = Integer.parseInt(panel.getEingabeValue());
             } catch (NumberFormatException ex) {
                 return;
             }
             model.berechneRunde(eingabe);
-            panel.getEingabe().setEditable(false);
-            panel.getNochMalBtn().setEnabled(true);
-            JLabel rundenErgebnis = panel.getRundenErgebnis();
+            panel.setEingabeEditable(false);
+            panel.setNochMalBtnEnabled(true);
             if (model.hatGewonnen()) {
-                rundenErgebnis.setText("Gewonnen");
-                rundenErgebnis.setBackground(Color.GREEN);
+                panel.setRundenErgebnis("Gewonnen");
+                panel.setRundenErgebnis(Color.GREEN);
             }
             else if (model.hatVerloren()) {
-                rundenErgebnis.setText("Verloren");
-                rundenErgebnis.setBackground(Color.RED);
+                panel.setRundenErgebnis("Verloren");
+                panel.setRundenErgebnis(Color.RED);
             }
             else {
-                rundenErgebnis.setText(Integer.toString(model.getRundenErgebnis()));
+                panel.setRundenErgebnis(Integer.toString(model.getRundenErgebnis()));
                 if (model.getRundenErgebnis() > 0) {
-                    rundenErgebnis.setBackground(Color.GREEN);
-                    panel.getGesamtPunkte().setBackground(Color.GREEN);
+                    panel.setRundenErgebnis(Color.GREEN);
+                    panel.setGesamtPunkte(Color.GREEN);
                 } else if (model.getRundenErgebnis() < 0) {
-                    rundenErgebnis.setBackground(Color.RED);
-                    panel.getGesamtPunkte().setBackground(Color.RED);
+                    panel.setRundenErgebnis(Color.RED);
+                    panel.setGesamtPunkte(Color.RED);
                 }
             }
-            panel.getComputerPunkte().setText(Integer.toString(model.getComputerZahl()));
-            panel.getGesamtPunkte().setText(Integer.toString(model.getGesamtPunkte()));
+            panel.setComputerPunkte(Integer.toString(model.getComputerZahl()));
+            panel.setGesamtPunkte(Integer.toString(model.getGesamtPunkte()));
         } else if (e.getSource() == panel.getNochMalBtn()) {
-            panel.getEingabe().setEditable(true);
-            panel.getNochMalBtn().setEnabled(false);
-            panel.getComputerPunkte().setText("");
-            panel.getRundenErgebnis().setText("");
-            panel.getEingabe().setText("");
-            panel.getRundenErgebnis().setBackground(Color.WHITE);
-            panel.getGesamtPunkte().setBackground(Color.WHITE);
+            panel.setEingabeEditable(true);
+            panel.setNochMalBtnEnabled(false);
+            panel.setComputerPunkte("");
+            panel.setRundenErgebnis("");
+            panel.setEingabeValue("");
+            panel.setRundenErgebnis(Color.WHITE);
+            panel.setGesamtPunkte(Color.WHITE);
         }
     }
 

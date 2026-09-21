@@ -7,11 +7,10 @@ public class GewinnModel {
     private int spielerZahl;
     private int computerZahl;
     private int rundenErgebnis;
-    private static Random random;
+    private static final Random random = new Random();
 
     public GewinnModel() {
         gesamtPunkte = 30;
-        random = new Random();
     }
     public void berechneComputerZahl() {
         computerZahl = random.nextInt(1,10);

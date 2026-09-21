@@ -2,13 +2,14 @@ package jhahn.view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class GrafikPanel extends JPanel {
-    private JButton nochMalBtn;
-    private JLabel rundenErgebnis, gesamtPunkte;
-    private JTextField eingabe, computerPunkte;
+    private final JButton nochMalBtn;
+    private final JLabel rundenErgebnis, gesamtPunkte;
+    private final JTextField eingabe, computerPunkte;
 
-    public GrafikPanel() {
+    public GrafikPanel(ActionListener controller) {
         this.setLayout(new BorderLayout());
         JPanel northPanel = new JPanel();
         northPanel.setLayout(new GridLayout(3, 2, 4, 4));
@@ -41,18 +42,15 @@ public class GrafikPanel extends JPanel {
         nochMalBtn.setEnabled(false);
         southPanel.add(nochMalBtn);
 
+        this.nochMalBtn.addActionListener(controller);
+        this.nochMalBtn.setActionCommand("btn");
+        this.eingabe.addActionListener(controller);
+        this.nochMalBtn.setActionCommand("eingabe");
+
         this.add(northPanel, BorderLayout.NORTH);
         this.add(centerPanel, BorderLayout.CENTER);
         this.add(southPanel, BorderLayout.SOUTH);
     }
-    // ONLY FOR ACTIONLISTENER AND getSource()
-    public JButton getNochMalBtn() {
-        return nochMalBtn;
-    }
-    public JTextField getEingabe() {
-        return eingabe;
-    }
-
     // Code for controller (Btn & Eingabe)
     public void setEingabeEditable(boolean editable) {
         this.eingabe.setEditable(editable);
@@ -81,7 +79,6 @@ public class GrafikPanel extends JPanel {
     public void setGesamtPunkte(Color color) {
         this.gesamtPunkte.setBackground(color);
     }
-
     public void setComputerPunkte(String computerPunkte) {
         this.computerPunkte.setText(computerPunkte);
     }

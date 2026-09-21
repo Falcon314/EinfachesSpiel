@@ -7,10 +7,8 @@ public class GrafikFrame extends JFrame {
     private final GrafikPanel panel;
     public GrafikFrame(ActionListener controller) {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        panel = new GrafikPanel();
+        panel = new GrafikPanel(controller);
         this.add(panel);
-        panel.getNochMalBtn().addActionListener(controller);
-        panel.getEingabe().addActionListener(controller);
         this.setVisible(true);
         this.setSize(400, 400);
     }

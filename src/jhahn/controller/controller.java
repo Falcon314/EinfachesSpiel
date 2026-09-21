@@ -10,8 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class controller implements ActionListener {
-    private GrafikFrame view;
-    private GewinnModel model;
+    private final GrafikFrame view;
+    private final GewinnModel model;
     public controller() {
         this.view = new GrafikFrame(this);
         this.model = new GewinnModel();
@@ -20,7 +20,7 @@ public class controller implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         GrafikPanel panel = view.getPanel();
-        if (e.getSource() == panel.getEingabe()) {
+        if (e.getActionCommand().equals("eingabe")) {
             int eingabe;
             try {
                 eingabe = Integer.parseInt(panel.getEingabeValue());
@@ -50,7 +50,7 @@ public class controller implements ActionListener {
             }
             panel.setComputerPunkte(Integer.toString(model.getComputerZahl()));
             panel.setGesamtPunkte(Integer.toString(model.getGesamtPunkte()));
-        } else if (e.getSource() == panel.getNochMalBtn()) {
+        } else if (e.getActionCommand().equals("btn")) {
             panel.setEingabeEditable(true);
             panel.setNochMalBtnEnabled(false);
             panel.setComputerPunkte("");
